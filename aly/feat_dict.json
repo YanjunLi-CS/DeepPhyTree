@@ -1,0 +1,84 @@
+{
+    "R0_onehot": [
+        "R0_cat_0",
+        "R0_cat_1",
+        "R0_cat_2"
+    ],
+    "dynamic": {
+        "0": "decay",
+        "1": "growth",
+        "2": "static"
+    },
+    "dynamic_model": {
+        "0": "exp",
+        "1": "lin",
+        "2": "stable"
+    },
+    "gamma": {
+        "0": "(0.432, inf, 'right')",
+        "1": "(-0.472, 0.432, 'right')",
+        "2": "(-86.171, -1.476, 'right')",
+        "3": "(-1.476, -0.472, 'right')"
+    },
+    "gamma_onehot": [
+        "gamma_cat_0",
+        "gamma_cat_1",
+        "gamma_cat_2",
+        "gamma_cat_3"
+    ],
+    "ltt_shape": {
+        "0": "concave",
+        "1": "concave_convex",
+        "2": "convex",
+        "3": "convex_concave"
+    },
+    "ltt_shape_onehot": [
+        "ltt_shape_cat_0",
+        "ltt_shape_cat_1",
+        "ltt_shape_cat_2",
+        "ltt_shape_cat_3"
+    ],
+    "norm_onehot_feats": [
+        "v_sampling_fraction-norm",
+        "v_cluster_size-norm",
+        "v_timespan-norm",
+        "oster-norm",
+        "birth_rate-norm",
+        "PD-norm",
+        "abs_growth_rate-norm",
+        "fraction_time_growth-norm",
+        "r_max-norm",
+        "cherries-norm",
+        "ltt_shape_cat_0",
+        "ltt_shape_cat_1",
+        "ltt_shape_cat_2",
+        "ltt_shape_cat_3",
+        "R0_cat_0",
+        "R0_cat_1",
+        "R0_cat_2",
+        "gamma_cat_0",
+        "gamma_cat_1",
+        "gamma_cat_2",
+        "gamma_cat_3"
+    ],
+    "r0": {
+        "0": "(-inf, 0.0, 'right')",
+        "1": "(0.0, 1.0, 'right')",
+        "2": "(1.0, inf, 'right')"
+    },
+    "raw_feats": [
+        "v_sampling_fraction",
+        "v_cluster_size",
+        "v_timespan",
+        "oster",
+        "birth_rate",
+        "PD",
+        "abs_growth_rate",
+        "fraction_time_growth",
+        "r_max",
+        "cherries",
+        "gamma_cat",
+        "ltt_shape_cat",
+        "R0_cat"
+    ]
+}
