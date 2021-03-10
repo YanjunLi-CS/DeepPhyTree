@@ -38,6 +38,12 @@
         "ltt_shape_cat_2",
         "ltt_shape_cat_3"
     ],
+    "norm_edge_feats": [
+        "weight1-norm",
+        "weight2-norm",
+        "weight1_arsinh-norm",
+        "weight2_arsinh-norm"
+    ],
     "norm_onehot_feats": [
         "v_sampling_fraction-norm",
         "v_cluster_size-norm",
@@ -66,6 +72,12 @@
         "1": "(0.0, 1.0, 'right')",
         "2": "(1.0, inf, 'right')"
     },
+    "raw_edge_feats": [
+        "weight1",
+        "weight2",
+        "weight1_arsinh",
+        "weight2_arsinh"
+    ],
     "raw_feats": [
         "v_sampling_fraction",
         "v_cluster_size",
