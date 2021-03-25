@@ -44,6 +44,10 @@
         "weight1_arsinh-norm",
         "weight2_arsinh-norm"
     ],
+    "norm_edge_feats_arsinh": [
+        "weight1_arsinh-norm",
+        "weight2_arsinh-norm"
+    ],
     "norm_onehot_feats": [
         "v_sampling_fraction-norm",
         "v_cluster_size-norm",
