@@ -7,12 +7,21 @@
     "dynamic": {
         "0": "decay",
         "1": "growth",
-        "2": "static"
+        "2": "static",
+        "3": "bg"
     },
     "dynamic_model": {
         "0": "exp",
         "1": "lin",
         "2": "stable"
+    },
+    "extend_dynamic": {
+        "0": "decay-exp",
+        "1": "decay-lin",
+        "2": "growth-exp",
+        "3": "growth-lin",
+        "4": "static-stable",
+        "5": "bg"
     },
     "gamma": {
         "0": "(0.432, inf, 'right')",
@@ -38,15 +47,9 @@
         "ltt_shape_cat_2",
         "ltt_shape_cat_3"
     ],
-    "norm_edge_feats": [
-        "weight1-norm",
-        "weight2-norm",
-        "weight1_arsinh-norm",
-        "weight2_arsinh-norm"
-    ],
     "norm_edge_feats_arsinh": [
-        "weight1_arsinh-norm",
-        "weight2_arsinh-norm"
+        "weight1_arsinh-norm", 
+        "weight2_arsinh-norm" 
     ],
     "norm_onehot_feats": [
         "v_sampling_fraction-norm",
@@ -76,12 +79,6 @@
         "1": "(0.0, 1.0, 'right')",
         "2": "(1.0, inf, 'right')"
     },
-    "raw_edge_feats": [
-        "weight1",
-        "weight2",
-        "weight1_arsinh",
-        "weight2_arsinh"
-    ],
     "raw_feats": [
         "v_sampling_fraction",
         "v_cluster_size",
@@ -93,8 +90,8 @@
         "fraction_time_growth",
         "r_max",
         "cherries",
-        "gamma_cat",
+        "R0_cat",
         "ltt_shape_cat",
-        "R0_cat"
+        "gamma_cat"
     ]
 }

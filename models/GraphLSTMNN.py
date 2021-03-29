@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Mar 25 22:19:48 2021
 
 @author: Suncy
 
@@ -38,28 +37,29 @@ def edge_udf(edges):
 def node_udf(edges):
     # send edge state to dst node
     return {'hidden_state': edges.data['hidden_state']}
+
+
 def reducer(nodes):
     # cat states of node and in-bound edge
     cat_feat = torch.cat((nodes.mailbox['hidden_state'][:,0,:],nodes.data['hidden_state']),1)
     return {'cat': cat_feat} 
 
-class GraphLSTM(nn.Module):
-    def __init__(self):
-        super(GraphLSTM, self).__init__()
+
+class Net(nn.Module):
+    def __init__(self, **kwargs):
+        super(Net, self).__init__()
         self.hidden_size = 128
         self.num_iter = 2
         # node LSTM & edge LSTM
         # 21 dim node feature & 2 dim edge feature
-        self.Node_LSTM = nn.LSTM(input_size = 21, hidden_size=self.hidden_size, num_layers = 1, batch_first = True)
-        self.Edge_LSTM = nn.LSTM(input_size = 2, hidden_size=self.hidden_size, num_layers = 1, batch_first = True)
+        self.Node_LSTM = nn.LSTM(input_size=21, hidden_size=self.hidden_size, num_layers=1, batch_first = True)
+        self.Edge_LSTM = nn.LSTM(input_size=2, hidden_size=self.hidden_size, num_layers=1, batch_first = True)
         self.m = nn.Sigmoid()
         # message passing network
         self.node_mpn = nn.Linear(2*self.hidden_size, 21)
         self.edge_mpn = nn.Linear(2*self.hidden_size, 2)
         # linear classifier
         self.fc = nn.Linear(self.hidden_size, 4)
-    
-
     
     def forward(self, graph):
         # num of nodes & edges in batched graph
@@ -103,8 +103,8 @@ class GraphLSTM(nn.Module):
         # linear classifier
         output = self.fc(node_o[:,0,:])
         return F.log_softmax(output)
-            
-  
+
+
 def train():
     batch_size = 5
     
