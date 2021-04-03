@@ -15,7 +15,7 @@ import json
 from dl import feat_dict, logger
 from dgl.data import DGLDataset
 from collections import Counter
-from dgl.dataloading.pytorch import GraphDataLoader
+#from dgl.dataloading.pytorch import GraphDataLoader
 
 
 class Dataset(DGLDataset):
@@ -24,6 +24,7 @@ class Dataset(DGLDataset):
         ds_folder = osp.join(args.ds_dir, args.ds_name, args.ds_split)
 
         if phase in ["train", "valid", "test"]:
+        #if phase in ["train", "test"]:
             self.node_df = pd.read_csv(f"{ds_folder}/{phase}.csv", low_memory=False)
             self.edge_df = pd.read_csv(f"{ds_folder}/{phase}_edge.csv", low_memory=False)
         else:
@@ -73,9 +74,12 @@ class Dataset(DGLDataset):
         g.ndata["feat"] = torch.tensor(node_feat, dtype=torch.float32)
         g.ndata["label"] = torch.tensor(node_label, dtype=torch.int64)
         g.edata["feat"] = torch.tensor(onetree_edge_df[self.edge_feat_cols].values, dtype=torch.float32)
-        # wait for reading weight norm-asinh
 
-        g = dgl.add_self_loop(g)  # TODO: Add self-loop with self-edge weight filled with zero
+        #g = dgl.add_self_loop(g)  # TODO: Add self-loop with self-edge weight filled with zero
+        
+        # convert to bidirectional graph
+        g = dgl.add_reverse_edges(g, copy_ndata = True, copy_edata = True)
+        
         g = g.to(self.device)
 
         return g
