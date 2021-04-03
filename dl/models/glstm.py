@@ -21,8 +21,8 @@ from dl import feat_dict
 
 def edge_udf(edges):
     # cat states of edge and source node
-    #cat_feat = torch.cat((edges.src['h_feat'],edges.data['h_feat']),1)
-    cat_feat = torch.cat((edges.src['h_feat'],edges.data['h_feat'],edges.dst['h_feat']),1)
+    cat_feat = torch.cat((edges.src['h_feat'],edges.data['h_feat']),1)
+    # cat_feat = torch.cat((edges.src['h_feat'],edges.data['h_feat'],edges.dst['h_feat']),1)
     return {'cat': cat_feat}
   
 
@@ -33,7 +33,8 @@ def node_udf(edges):
 
 def reducer(nodes):
     # cat states of node and in-bound edge
-    cat_feat = torch.cat((torch.sum(nodes.mailbox['h_feat'],1),nodes.data['h_feat']),1)
+    # cat_feat = torch.cat((torch.sum(nodes.mailbox['h_feat'],1),nodes.data['h_feat']),1)
+    cat_feat = torch.cat((nodes.mailbox['h_feat'][:,0,:],nodes.data['h_feat']),1)
     return {'cat': cat_feat} 
 
 
@@ -56,7 +57,7 @@ class Net(nn.Module):
         
         # message passing network
         self.node_mpn = nn.Linear(2*self.h_feat, n_feats)
-        self.edge_mpn = nn.Linear(3*self.h_feat, e_feats)
+        self.edge_mpn = nn.Linear(2*self.h_feat, e_feats)
         
         # linear classifier
         self.fc = nn.Linear(self.h_feat, num_classes)
@@ -75,11 +76,11 @@ class Net(nn.Module):
         
         for i in range(self.num_iter):
             if i == 0: # first iteration, input is feature vec
-                node_h,node_c = self.Node_LSTM(g.ndata['feat'], (g.ndata['h_feat'], g.ndata['c_feat']))
-                edge_h,edge_c = self.Edge_LSTM(g.edata['feat'], (g.edata['h_feat'], g.edata['c_feat']))
+                g.ndata['h_feat'], g.ndata['c_feat'] = self.Node_LSTM(g.ndata['feat'], (g.ndata['h_feat'], g.ndata['c_feat']))
+                g.edata['h_feat'], g.edata['c_feat'] = self.Edge_LSTM(g.edata['feat'], (g.edata['h_feat'], g.edata['c_feat']))
             else: # later iteration, input is message
-                node_h,node_c = self.Node_LSTM(g.ndata['msg'], (g.ndata['h_feat'], g.ndata['c_feat']))
-                edge_h,edge_c = self.Edge_LSTM(g.edata['msg'], (g.edata['h_feat'], g.edata['c_feat']))
+                g.ndata['h_feat'], g.ndata['c_feat'] = self.Node_LSTM(g.ndata['msg'], (g.ndata['h_feat'], g.ndata['c_feat']))
+                g.edata['h_feat'], g.edata['c_feat'] = self.Edge_LSTM(g.edata['msg'], (g.edata['h_feat'], g.edata['c_feat']))
             
             
             # message passing
@@ -89,7 +90,7 @@ class Net(nn.Module):
             g.ndata['msg'] = self.m(self.node_mpn(g.ndata['cat'])) # generate node message
            
         # linear classifier
-        output = self.fc(node_h)
+        output = self.fc(g.ndata['h_feat'])
         return output, info
     
     def ce_loss(self, y_pred, y_true, weight=None):
