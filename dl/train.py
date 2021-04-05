@@ -13,6 +13,7 @@ from dl.utils import *
 from dl.info import *
 from dl import logger
 from dl.dataloader import gen_label_weight
+from dl.post_aly import PlotAly, cal_pred_metrics
 
 
 class Trainer(object):
@@ -33,8 +34,10 @@ class Trainer(object):
         self.weight_path_dict = create_weight_dir(self.weight_path, METRICS)
         self.summary_path = osp.join(self.exp_path, "summary")
         self.pred_path = osp.join(self.exp_path, "preds")
+        self.plot_path = osp.join(self.exp_path, "plots")
         os.makedirs(self.pred_path, exist_ok=True)
         os.makedirs(self.weight_path, exist_ok=True)
+        os.makedirs(self.plot_path, exist_ok=True)
 
         # self.out_feat_path = osp.join(self.exp_path, 'out_feat', self.args.restore_metric)
         # os.makedirs(self.out_feat_path, exist_ok=True)
@@ -98,6 +101,10 @@ class Trainer(object):
         metrics_dict, pred_dict = self.eval_one_epoch(scope, dl)
         aly_result_dict = self.aly_pred(phase, metrics_dict, pred_dict)
         logger.info("{}, {}, {}".format(scope, format_metric_dict(metrics_dict), format_metric_dict(aly_result_dict)))
+
+        plot_aly = PlotAly(pred_dict, self.plot_path)
+        plot_aly.plot_metrics()
+
         np.save(osp.join(self.pred_path, f"{phase}.npy"), pred_dict)
 
     def _get_dl(self, cohort):

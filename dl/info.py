@@ -6,7 +6,6 @@ info.py:
 """
 
 SAVE_PATH = "/data/yanjun/DeepPhyTree/checkpoints/02172021/split_rs123"
-BASE_PATH = "/mnt/data2/yanjun/deepclustering"
 
 METRICS = ["loss"]
 MIN_METRICS = ["loss"]

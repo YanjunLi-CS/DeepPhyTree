@@ -42,22 +42,23 @@ def main(args):
 
     model_bk_f = osp.join(exp_path, "{}_{}.py".format(args.model.lower(), args.model_num))
 
-    if args.mode == "train" or not args.restore:
-        spec = importlib.util.spec_from_file_location("GraphModel", f"./models/{args.model.lower()}.py")
-        MODULE = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(MODULE)
-        # MODULE = importlib.import_module("models." + args.model.lower())
-        shutil.copy(osp.join("models", "{}.py".format(args.model.lower())), model_bk_f)
-    elif args.mode == "eval":
+    if args.mode == "eval" or args.restore:
         # tmp_model_path = osp.join(osp.dirname(script_dir), 'tmp')
         # os.makedirs(tmp_model_path, exist_ok=True)
         # shutil.copy(model_bk_f, osp.join(tmp_model_path))
-        spec = importlib.util.spec_from_file_location("Net", model_bk_f)
+        spec = importlib.util.spec_from_file_location("DLModel", model_bk_f)
         MODULE = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(MODULE)
         # MODULE = importlib.import_module('models.tmp.{}_{}'.format(args.model.lower(), args.model_num))
         train_config_path = osp.join(exp_path, "weight")
         args = load_config(train_config_path, 'train_config_0', args)
+
+    else:
+        spec = importlib.util.spec_from_file_location("DLModel", f"./models/{args.model.lower()}.py")
+        MODULE = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(MODULE)
+        # MODULE = importlib.import_module("models." + args.model.lower())
+        shutil.copy(osp.join("models", "{}.py".format(args.model.lower())), model_bk_f)
 
     device = torch.device("cuda" if args.num_gpus > 0 else "cpu")
     model = MODULE.Net(args)

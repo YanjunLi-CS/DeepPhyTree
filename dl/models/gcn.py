@@ -18,8 +18,8 @@ class Net(nn.Module):
         num_classes = len(feat_dict[args.node_label_cols.split("_cat")[0]])
 
         h_feat = 256
-        self.conv1 = GraphConv(in_feats, h_feat)
-        self.conv2 = GraphConv(h_feat, num_classes)
+        self.conv1 = GraphConv(in_feats, h_feat, allow_zero_in_degree=True)
+        self.conv2 = GraphConv(h_feat, num_classes, allow_zero_in_degree=True)
 
         # h_feats = [256, 256]
         # self.conv1 = GraphConv(in_feats, h_feats[0])

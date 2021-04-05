@@ -35,6 +35,8 @@ def get_arguments():
                       choices=["dynamic_cat", "extend_dynamic_cat"])
     data.add_argument("--edge_feat_cols", type=str, default="norm_edge_feats_arsinh")
     data.add_argument("--pro_bg_nodes", type=str, default='all_zero')
+    data.add_argument("--add_self_loop", type=bool, default=True)
+    data.add_argument("--bidirection", type=bool, default=False)
 
     # Model Options
     model = parser.add_argument_group("Model options")
