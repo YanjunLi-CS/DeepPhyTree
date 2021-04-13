@@ -35,12 +35,13 @@ def get_arguments():
                       choices=["dynamic_cat", "extend_dynamic_cat"])
     data.add_argument("--edge_feat_cols", type=str, default="norm_edge_feats_arsinh")
     data.add_argument("--pro_bg_nodes", type=str, default='all_zero')
-    data.add_argument("--add_self_loop", type=bool, default=True)
+    data.add_argument("--add_self_loop", type=bool, default=False)
     data.add_argument("--bidirection", type=bool, default=False)
 
     # Model Options
     model = parser.add_argument_group("Model options")
-    model.add_argument("--model", type=str, default="gcn")
+    model.add_argument("--model", type=str, default="gsage",
+                       choices=["gcn", "glstm", "treelstm", "gat", "gsage"])
     model.add_argument("-n", "--model_num", type=int, default=0, help="The number of model")
     model.add_argument("--loss", type=str, default="ce", choices=["ce"])
     model.add_argument("--loss_ignore_bg", type=bool, default=True, help="Set loss weight as 0 for bg nodes")
