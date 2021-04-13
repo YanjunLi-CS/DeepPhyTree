@@ -97,7 +97,7 @@ class Trainer(object):
         self.load_weight()
         dl = self._get_dl(phase)
 
-        scope = phase
+        scope = f"best-{phase}"
         metrics_dict, pred_dict = self.eval_one_epoch(scope, dl)
         aly_result_dict = self.aly_pred(phase, metrics_dict, pred_dict)
         logger.info("{}, {}, {}".format(scope, format_metric_dict(metrics_dict), format_metric_dict(aly_result_dict)))
@@ -178,8 +178,8 @@ class Trainer(object):
             valid_metrics_dict = {'scope': scope}
             valid_metrics_dict.update({k: np.average(np.array(v)) for k, v in metrics_dict.items()})
 
-            valid_pred_dict = {"y_true": np.array(y_trues).reshape(-1),
-                               "y_predscore": np.squeeze(np.array(y_predscores))}
+            valid_pred_dict = {"y_true": np.concatenate(y_trues).reshape(-1),
+                               "y_predscore": np.concatenate(y_predscores)}
             return valid_metrics_dict, valid_pred_dict
 
     def aly_pred(self, scope, metric_dict, pred_dict=None):
