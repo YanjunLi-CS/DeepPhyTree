@@ -1,0 +1,95 @@
+{
+    "R0_onehot": [
+        "R0_cat_0",
+        "R0_cat_1",
+        "R0_cat_2"
+    ],
+    "dynamic": {
+        "0": "decay",
+        "1": "growth",
+        "2": "static"
+    },
+    "gamma": {
+        "0": "(-16.236, -14.444, 'right')",
+        "1": "(-14.444, inf, 'right')",
+        "2": "(-6179.216, -17.195, 'right')",
+        "3": "(-17.195, -16.236, 'right')"
+    },
+    "gamma_onehot": [
+        "gamma_cat_0",
+        "gamma_cat_1",
+        "gamma_cat_2",
+        "gamma_cat_3"
+    ],
+    "ltt_shape": {
+        "0": "concave",
+        "1": "concave_convex",
+        "2": "convex",
+        "3": "convex_concave"
+    },
+    "ltt_shape_onehot": [
+        "ltt_shape_cat_0",
+        "ltt_shape_cat_1",
+        "ltt_shape_cat_2",
+        "ltt_shape_cat_3"
+    ],
+    "norm_edge_feats": [
+        "weight1-norm",
+        "weight2-norm",
+        "weight1_arsinh-norm",
+        "weight2_arsinh-norm"
+    ],
+    "norm_onehot_feats": [
+        "v_sampling_fraction-norm",
+        "v_cluster_size-norm",
+        "v_timespan-norm",
+        "oster-norm",
+        "birth_rate-norm",
+        "PD-norm",
+        "abs_growth_rate-norm",
+        "fraction_time_growth-norm",
+        "r_max-norm",
+        "cherries-norm",
+        "BLD-norm",
+        "dynamic_model-norm",
+        "ltt_shape_cat_0",
+        "ltt_shape_cat_1",
+        "ltt_shape_cat_2",
+        "ltt_shape_cat_3",
+        "R0_cat_0",
+        "R0_cat_1",
+        "R0_cat_2",
+        "gamma_cat_0",
+        "gamma_cat_1",
+        "gamma_cat_2",
+        "gamma_cat_3"
+    ],
+    "r0": {
+        "0": "(-inf, 0.0, 'right')",
+        "1": "(0.0, 1.0, 'right')",
+        "2": "(1.0, inf, 'right')"
+    },
+    "raw_edge_feats": [
+        "weight1",
+        "weight2",
+        "weight1_arsinh",
+        "weight2_arsinh"
+    ],
+    "raw_feats": [
+        "v_sampling_fraction",
+        "v_cluster_size",
+        "v_timespan",
+        "oster",
+        "birth_rate",
+        "PD",
+        "abs_growth_rate",
+        "fraction_time_growth",
+        "r_max",
+        "cherries",
+        "BLD",
+        "dynamic_model",
+        "R0_cat",
+        "gamma_cat",
+        "ltt_shape_cat"
+    ]
+}
