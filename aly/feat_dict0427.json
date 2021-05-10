@@ -51,7 +51,6 @@
         "r_max-norm",
         "cherries-norm",
         "BLD-norm",
-        "dynamic_model-norm",
         "ltt_shape_cat_0",
         "ltt_shape_cat_1",
         "ltt_shape_cat_2",
@@ -87,7 +86,6 @@
         "r_max",
         "cherries",
         "BLD",
-        "dynamic_model",
         "R0_cat",
         "gamma_cat",
         "ltt_shape_cat"
