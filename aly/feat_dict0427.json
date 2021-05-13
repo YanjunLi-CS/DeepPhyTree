@@ -5,15 +5,16 @@
         "R0_cat_2"
     ],
     "dynamic": {
-        "0": "decay",
-        "1": "growth",
-        "2": "static"
+        "0": "static",
+        "1": "decay",
+        "2": "growth",
+        "3": "bg"
     },
     "gamma": {
-        "0": "(-16.236, -14.444, 'right')",
-        "1": "(-14.444, inf, 'right')",
-        "2": "(-6179.216, -17.195, 'right')",
-        "3": "(-17.195, -16.236, 'right')"
+        "0": "(-16.218, -14.449, 'right')",
+        "1": "(-14.449, inf, 'right')",
+        "2": "(-6179.216, -17.185, 'right')",
+        "3": "(-17.185, -16.218, 'right')"
     },
     "gamma_onehot": [
         "gamma_cat_0",
@@ -33,9 +34,7 @@
         "ltt_shape_cat_2",
         "ltt_shape_cat_3"
     ],
-    "norm_edge_feats": [
-        "weight1-norm",
-        "weight2-norm",
+    "norm_edge_feats_arsinh": [
         "weight1_arsinh-norm",
         "weight2_arsinh-norm"
     ],
@@ -86,8 +85,8 @@
         "r_max",
         "cherries",
         "BLD",
+        "ltt_shape_cat",
         "R0_cat",
-        "gamma_cat",
-        "ltt_shape_cat"
+        "gamma_cat"
     ]
 }
