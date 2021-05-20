@@ -1,9 +1,4 @@
 {
-    "R0_onehot": [
-        "R0_cat_0",
-        "R0_cat_1",
-        "R0_cat_2"
-    ],
     "dynamic": {
         "0": "static",
         "1": "decay",
@@ -50,23 +45,16 @@
         "r_max-norm",
         "cherries-norm",
         "BLD-norm",
+        "new_R0-norm",
         "ltt_shape_cat_0",
         "ltt_shape_cat_1",
         "ltt_shape_cat_2",
         "ltt_shape_cat_3",
-        "R0_cat_0",
-        "R0_cat_1",
-        "R0_cat_2",
         "gamma_cat_0",
         "gamma_cat_1",
         "gamma_cat_2",
         "gamma_cat_3"
     ],
-    "r0": {
-        "0": "(-inf, 0.0, 'right')",
-        "1": "(0.0, 1.0, 'right')",
-        "2": "(1.0, inf, 'right')"
-    },
     "raw_edge_feats": [
         "weight1",
         "weight2",
@@ -85,8 +73,8 @@
         "r_max",
         "cherries",
         "BLD",
-        "ltt_shape_cat",
-        "R0_cat",
-        "gamma_cat"
+        "new_R0",
+        "gamma_cat",
+        "ltt_shape_cat"
     ]
 }
